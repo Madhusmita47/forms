@@ -8,7 +8,9 @@ export default class register extends Component {
       text2:"",
       text3:"",
       text4: "",
-      err:""
+      err:{text1:"", text2:"",
+      text3:"",
+      text4: ""}
 
     }
   }
@@ -37,35 +39,31 @@ export default class register extends Component {
     })
   }
   handleclick = () => {
-    console.log(this.state.text1.length)
+    // const { err } = this.state
+  
+
     if (this.state.text1.length === 0 || this.state.text1.length < 3) {
+      
+  this.setState({"err.text1":"error:LastName is either empty or lessthan 3 character"})
     
-      return <>
-        this.state.err && <div className="alert alert-danger" role="alert">
-             error:firstName is either empty or lessthan 3 character
-      </div>
-      </>
+      
     }
     if (this.state.text2.length === 0 || this.state.text2.length < 3) {
-      return <div className="alert alert-danger" role="alert">
-             error:LastName is either empty or lessthan 3 character
-          </div>
+      this.setState({"err.text2":"error:LastName is either empty or lessthan 3 character"})
+      
     }
     if (this.state.text3.length === 0) {
-      return <div className="alert alert-danger" role="alert">
-             error:Countries field cannot be empty
-          </div>
+      this.setState({"errs.text3":"error:Countries field cannot be empty"})
+      
     }
     if (this.state.text4.length === 0 || this.state.text4 !== "male" || this.state.text4 !== "female"
-    || this.state.text4!=="other") {
-      return <div className="alert alert-danger" role="alert">
-             error:Gender can take only 3 values male ,female or other
-          </div>
+      || this.state.text4 !== "other") {
+      this.setState({ "errs.text4" : "error:Gender can take only 3 values male ,female or other" })
+      
     }
+
     console.log(this.state.text1, this.state.text2, this.state.text3, this.state.text4)
-    return <div className="alert alert-success" role="alert">
-       Details successfully submitted
-  </div> 
+    
     
   }
   
